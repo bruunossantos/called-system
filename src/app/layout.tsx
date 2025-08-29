@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import { BsHouseDoorFill, BsJournalText, BsPeopleFill } from 'react-icons/bs';
 import "./globals.css";
 
 const poppins = Poppins({
@@ -19,28 +20,31 @@ function Sidebar() {
       <div className="mb-8 font-bold text-2xl">BSS</div>
       <nav>
         <ul>
-          <li className="mb-4">
+          <li className="mb-2">
             <a
               href="#"
-              className="block p-2 rounded hover:bg-primary-color-hover transition-colors"
+              className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
-              Início
+              <BsHouseDoorFill size={20} />
+              <span>Início</span>
             </a>
           </li>
-          <li className="mb-4">
+          <li className="mb-2">
             <a
               href="/chamados"
-              className="block p-2 rounded hover:bg-primary-color-hover transition-colors"
+              className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
-              Chamados
+               <BsJournalText size={20} />
+              <span>Chamados</span>
             </a>
           </li>
-          <li className="mb-4">
+          <li className="mb-2">
             <a
               href="#"
-              className="block p-2 rounded hover:bg-primary-color-hover transition-colors"
+              className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
-              Colaboradores
+              <BsPeopleFill size={20} />
+              <span>Colaboradores</span>
             </a>
           </li>
         </ul>
@@ -56,9 +60,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body
-        className={`${poppins.variable} antialiased`}
-      >
+      <body className={`${poppins.variable} antialiased`}>
         <div className="flex h-screen bg-gray-100">
           <Sidebar />
           <main className="flex-1 p-8 overflow-y-auto">{children}</main>
