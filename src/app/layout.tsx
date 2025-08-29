@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Link from "next/link";
 import { BsHouseDoorFill, BsJournalText, BsPeopleFill } from 'react-icons/bs';
 import "./globals.css";
 
@@ -21,31 +22,31 @@ function Sidebar() {
       <nav>
         <ul>
           <li className="mb-2">
-            <a
-              href="#"
+            <Link
+              href="/"
               className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
               <BsHouseDoorFill size={20} />
               <span>Início</span>
-            </a>
+            </Link>
           </li>
           <li className="mb-2">
-            <a
+            <Link
               href="/chamados"
               className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
                <BsJournalText size={20} />
               <span>Chamados</span>
-            </a>
+            </Link>
           </li>
           <li className="mb-2">
-            <a
+            <Link
               href="#"
               className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
               <BsPeopleFill size={20} />
               <span>Colaboradores</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>
@@ -61,7 +62,7 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={`${poppins.variable} antialiased`}>
-        <div className="flex h-screen bg-gray-100">
+        <div className="flex h-screen bg-page-bg">
           <Sidebar />
           <main className="flex-1 p-8 overflow-y-auto">{children}</main>
         </div>

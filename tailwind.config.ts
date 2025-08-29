@@ -16,6 +16,7 @@ export default {
         foreground: "var(--foreground)",
         "primary-color": "#687bfb",
         "primary-color-hover": "#5367df",
+        'page-bg': '#eaeef7',
       },
     },
   },
