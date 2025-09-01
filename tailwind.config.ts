@@ -16,7 +16,18 @@ export default {
         foreground: "var(--foreground)",
         "primary-color": "#687bfb",
         "primary-color-hover": "#5367df",
-        'page-bg': '#eaeef7',
+        "page-bg": "#eaeef7",
+
+        "font-color": "#232c43",
+
+        "red-color": "#f65f5a",
+        "bg-red-color": "#fac4b5",
+
+        "orange-color": "#f67352",
+        "bg-orange-color": "#ffe3b9",
+
+        "green-color": "#35be65",
+        "bg-green-color": "#d4f4d3",
       },
     },
   },
