@@ -13,14 +13,14 @@ type CalledTableProps = {
 };
 
 const situationColors: { [key: string]: string } = {
-  FAZENDO: "text-orange-color bg-bg-orange-color",
-  PENDENTE: "text-red-color bg-bg-red-color",
-  CONCLUIDO: "text-green-color bg-bg-green-color",
+  "EM PRODUÇÃO": "text-orange-color bg-bg-orange-color",
+  "PENDENTE": "text-red-color bg-bg-red-color",
+  "CONCLUÍDO": "text-green-color bg-bg-green-color",
 };
 
 export default function CalledTable({ chamados, onAddCalled }: CalledTableProps) {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
+    <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span>Mostrar</span>
@@ -35,49 +35,51 @@ export default function CalledTable({ chamados, onAddCalled }: CalledTableProps)
           onClick={onAddCalled}
           className="bg-primary-color text-white px-4 py-2 rounded-lg hover:bg-primary-color-hover font-semibold text-sm transition-colors"
         >
-          ADD NOVO +
+          ADICIONAR NOVO +
         </button>
       </div>
 
-      <div className="overflow-x-auto">
-        <table className="w-full text-left text-font-color">
-          <thead className="border-b text-gray-500 text-sm">
-            <tr>
-              <th className="p-3 font-medium">Colaborador</th>
-              <th className="p-3 font-medium">Descrição</th>
-              <th className="p-3 font-medium">Motivo</th>
-              <th className="p-3 font-medium">Situação</th>
-              <th className="p-3 font-medium">Abertura</th>
-              <th className="p-3 font-medium">Geral</th>
-            </tr>
-          </thead>
-          <tbody>
-            {chamados.map((chamado) => (
-              <tr key={chamado.id} className="border-b hover:bg-page-bg">
-                <td className="p-3">{chamado.userRequest.name}</td>
-                <td className="p-3">{chamado.title}</td>
-                <td className="p-3">{chamado.category.name}</td>
-                <td className="p-3">
-                  <span
-                    className={`px-2 py-1 text-xs font-semibold rounded-full ${
-                      situationColors[chamado.situation.name] || "bg-gray-200"
-                    }`}
-                  >
-                    {chamado.situation.name}
-                  </span>
-                </td>
-                <td className="p-3">
-                  {new Date(chamado.openDate).toLocaleDateString("pt-BR")}
-                </td>
-                <td className="p-3">
-                  <button className="text-gray-500 hover:text-gray-800">
-                    <BsThreeDotsVertical size={20} />
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className="space-y-3">
+        
+        {/* Cabeçalho da "Tabela" */}
+        <div className="grid grid-cols-7 gap-4 px-3 py-2 text-[15px] text-gray-500 font-semibold bg-table-header-bg rounded-lg">
+          <div className="col-span-1">Colaborador</div>
+          <div className="col-span-2">Descrição</div>
+          <div className="col-span-1">Motivo</div>
+          <div className="col-span-1">Situação</div>
+          <div className="col-span-1">Abertura</div>
+          <div className="col-span-1 text-right">Geral</div>
+        </div>
+
+        {/* Corpo da "Tabela" - Mapeamento dos chamados */}
+        {chamados.map((chamado) => (
+          <div
+            key={chamado.id}
+            className="grid grid-cols-7 gap-4 items-center bg-white py-4 px-3 rounded-lg text-font-color text-[18px] shadow-sm"
+          >
+            {/* Colunas de dados */}
+            <div className="col-span-1">{chamado.userRequest.name}</div>
+            <div className="col-span-2 truncate">{chamado.title}</div>
+            <div className="col-span-1">{chamado.category.name}</div>
+            <div className="col-span-1">
+              <span
+                className={`px-2 py-1 text-xs font-semibold rounded-full ${
+                  situationColors[chamado.situation.name] || "bg-gray-200"
+                }`}
+              >
+                {chamado.situation.name}
+              </span>
+            </div>
+            <div className="col-span-1">
+              {new Date(chamado.openDate).toLocaleDateString("pt-BR")}
+            </div>
+            <div className="col-span-1 flex justify-end">
+              <button className="text-gray-500 hover:text-gray-800">
+                <BsThreeDotsVertical size={20} />
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

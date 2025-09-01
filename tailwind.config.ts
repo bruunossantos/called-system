@@ -9,7 +9,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var--font-poppins", "sans-serif"],
+        sans: ["var(--font-poppins)", "sans-serif"],
       },
       colors: {
         background: "var(--background)",
@@ -28,6 +28,8 @@ export default {
 
         "green-color": "#35be65",
         "bg-green-color": "#d4f4d3",
+
+        "table-header-bg": "#f5f6f8",
       },
     },
   },

@@ -71,7 +71,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`${poppins.variable} antialiased`}>
+      <body className={`${poppins.variable} font-sans antialiased`}>
         <div className="flex h-screen bg-page-bg">
           <Sidebar />
           <main className="flex-1 p-8 overflow-y-auto">{children}</main>
