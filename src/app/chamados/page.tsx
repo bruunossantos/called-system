@@ -53,7 +53,6 @@ export default function ChamadosPage() {
       {isLoading ? (
         <p className="text-center text-gray-500">A carregar chamados...</p>
       ) : (
-        // Passamos a função de abrir o modal para a tabela
         <CalledTable 
           chamados={calledData}
           onAddCalled={() => setIsModalOpen(true)} 

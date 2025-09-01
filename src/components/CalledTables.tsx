@@ -7,10 +7,9 @@ type Called = {
   category: { name: string }; situation: { name: string };
 };
 
-// Atualizamos as props para incluir a nova função
 type CalledTableProps = {
   chamados: Called[];
-  onAddCalled: () => void; // A função que recebemos do Pai
+  onAddCalled: () => void; 
 };
 
 const situationColors: { [key: string]: string } = {
@@ -32,7 +31,6 @@ export default function CalledTable({ chamados, onAddCalled }: CalledTableProps)
           </select>
         </div>
         
-        {/* O botão está de volta, chamando a função do Pai */}
         <button 
           onClick={onAddCalled}
           className="bg-primary-color text-white px-4 py-2 rounded-lg hover:bg-primary-color-hover font-semibold text-sm transition-colors"
