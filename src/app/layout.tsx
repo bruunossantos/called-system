@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import Link from "next/link";
-import { BsHouseDoorFill, BsJournalText, BsPeopleFill } from 'react-icons/bs';
+import Image from "next/image";
+import { BsHouseDoorFill, BsJournalText, BsPeopleFill } from "react-icons/bs";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -18,7 +19,16 @@ export const metadata: Metadata = {
 function Sidebar() {
   return (
     <aside className="w-64 bg-primary-color rounded-r-[20px] text-white p-4 shadow-md">
-      <div className="mb-8 font-bold text-2xl">BSS</div>
+      <div className="mb-12">
+        <Image
+          src="/logo-brss.png"
+          alt="Logo BSS"
+          width={130}
+          height={44}
+          priority
+        />
+      </div>
+
       <nav>
         <ul>
           <li className="mb-2">
@@ -35,7 +45,7 @@ function Sidebar() {
               href="/chamados"
               className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
-               <BsJournalText size={20} />
+              <BsJournalText size={20} />
               <span>Chamados</span>
             </Link>
           </li>

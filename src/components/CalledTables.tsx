@@ -3,16 +3,14 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 type Called = {
-  id: string;
-  title: string;
-  openDate: string;
-  userRequest: { name: string };
-  category: { name: string };
-  situation: { name: string };
+  id: string; title: string; openDate: string; userRequest: { name: string };
+  category: { name: string }; situation: { name: string };
 };
 
+// Atualizamos as props para incluir a nova função
 type CalledTableProps = {
   chamados: Called[];
+  onAddCalled: () => void; // A função que recebemos do Pai
 };
 
 const situationColors: { [key: string]: string } = {
@@ -21,10 +19,9 @@ const situationColors: { [key: string]: string } = {
   CONCLUIDO: "text-green-color bg-bg-green-color",
 };
 
-export default function CalledTable({ chamados }: CalledTableProps) {
+export default function CalledTable({ chamados, onAddCalled }: CalledTableProps) {
   return (
     <div className="bg-white p-6 rounded-lg shadow-md">
-      {/* ESTILO DO CABEÇALHO */}
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span>Mostrar</span>
@@ -34,12 +31,16 @@ export default function CalledTable({ chamados }: CalledTableProps) {
             <option>20</option>
           </select>
         </div>
-        <button className="bg-primary-color text-white px-4 py-2 rounded-lg hover:bg-primary-color-hover font-semibold text-sm transition-colors">
+        
+        {/* O botão está de volta, chamando a função do Pai */}
+        <button 
+          onClick={onAddCalled}
+          className="bg-primary-color text-white px-4 py-2 rounded-lg hover:bg-primary-color-hover font-semibold text-sm transition-colors"
+        >
           ADD NOVO +
         </button>
       </div>
 
-      {/* ESTILO DA TABELA */}
       <div className="overflow-x-auto">
         <table className="w-full text-left text-font-color">
           <thead className="border-b text-gray-500 text-sm">
@@ -52,9 +53,9 @@ export default function CalledTable({ chamados }: CalledTableProps) {
               <th className="p-3 font-medium">Geral</th>
             </tr>
           </thead>
-          <tbody className="text-gray-700">
+          <tbody>
             {chamados.map((chamado) => (
-              <tr key={chamado.id} className="border-b hover:bg-gray-50">
+              <tr key={chamado.id} className="border-b hover:bg-page-bg">
                 <td className="p-3">{chamado.userRequest.name}</td>
                 <td className="p-3">{chamado.title}</td>
                 <td className="p-3">{chamado.category.name}</td>
