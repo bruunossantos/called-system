@@ -91,6 +91,11 @@ export default function AddCalledModal({ isOpen, onClose, onSuccess }: AddCalled
         <h2 className="text-2xl font-bold mb-6">Adicionar Novo Chamado</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">Título</label>
+              <input type="text" id="title" name="title" value={formData.title} onChange={handleChange} className="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-primary-color focus:border-primary-color" required />
+            </div>
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label htmlFor="userRequestId" className="block text-sm font-medium text-gray-700 mb-1">Colaborador</label>

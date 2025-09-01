@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 type Called = {
@@ -20,15 +21,21 @@ const situationColors: { [key: string]: string } = {
 };
 
 export default function CalledTable({ chamados, onAddCalled }: CalledTableProps) {
+
+  const [itemsPerPage, setItemsPerPage] = useState(6);
+
+  const visibleCalled = chamados.slice(0, itemsPerPage)
+
   return (
     <div className="p-6">
       <div className="flex justify-between items-center mb-4">
         <div className="flex items-center gap-2 text-sm text-gray-600">
           <span>Mostrar</span>
-          <select className="border rounded-md px-2 py-1">
+          <select className="border rounded-md px-2 py-1" value={itemsPerPage} onChange={(e) => setItemsPerPage(Number(e.target.value))}>
             <option>6</option>
             <option>10</option>
             <option>20</option>
+            <option>50</option>
           </select>
         </div>
         
@@ -53,7 +60,7 @@ export default function CalledTable({ chamados, onAddCalled }: CalledTableProps)
         </div>
 
         {/* Corpo da "Tabela" - Mapeamento dos chamados */}
-        {chamados.map((chamado) => (
+        {visibleCalled.map((chamado) => (
           <div
             key={chamado.id}
             className="grid grid-cols-7 gap-4 items-center bg-white py-4 px-3 rounded-lg text-font-color text-[18px] shadow-sm"
