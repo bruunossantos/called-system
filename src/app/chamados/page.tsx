@@ -6,7 +6,7 @@ import CalledTable from "@/components/CalledTables";
 import AddCalledModal from '@/components/AddCalledModal';
 
 type Called = {
-  id: string; title: string; openDate: string; userRequest: { name: string };
+  id: string; title: string; description: string; openDate: string; userRequest: { name: string };
   category: { name: string }; situation: { name: string };
 };
 
@@ -36,17 +36,19 @@ export default function ChamadosPage() {
     fetchData();
   };
 
-  const naFilaCount = calledData.length;
-  const concluidosCount = 0;
-  const atrasadosCount = 0;
+  const pendenteCount = calledData.filter(c => c.situation.name === 'PENDENTE').length;
+  const emProducaoCount = calledData.filter(c => c.situation.name === 'EM PRODUÇÃO').length;
+  const aguardandoCount = calledData.filter(c => c.situation.name === 'AGUARDANDO RETORNO').length;
+  const concluidosCount = calledData.filter(c => c.situation.name === 'CONCLUÍDO').length;
 
   return (
     <div>
       <h1 className="text-3xl font-bold text-font-color mb-6">Chamados</h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 my-6">
-        <Card title="ATRASADOS" value={atrasadosCount} color="red" />
-        <Card title="NA FILA" value={naFilaCount} color="orange" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-6">
+        <Card title="PENDENTE" value={pendenteCount} color="red" />
+        <Card title="EM PRODUÇÃO" value={emProducaoCount} color="orange" />
+        <Card title="AGUARDANDO" value={aguardandoCount} color="purple" />
         <Card title="CONCLUÍDOS" value={concluidosCount} color="green" />
       </div>
 

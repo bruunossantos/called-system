@@ -3,7 +3,7 @@
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 type Called = {
-  id: string; title: string; openDate: string; userRequest: { name: string };
+  id: string; title: string; description: string; openDate: string; userRequest: { name: string };
   category: { name: string }; situation: { name: string };
 };
 
@@ -15,6 +15,7 @@ type CalledTableProps = {
 const situationColors: { [key: string]: string } = {
   "EM PRODUÇÃO": "text-orange-color bg-bg-orange-color",
   "PENDENTE": "text-red-color bg-bg-red-color",
+  "AGUARDANDO RETORNO": "text-purple-color bg-bg-purple-color",
   "CONCLUÍDO": "text-green-color bg-bg-green-color",
 };
 
@@ -59,7 +60,7 @@ export default function CalledTable({ chamados, onAddCalled }: CalledTableProps)
           >
             {/* Colunas de dados */}
             <div className="col-span-1">{chamado.userRequest.name}</div>
-            <div className="col-span-2 truncate">{chamado.title}</div>
+            <div className="col-span-2 truncate">{chamado.description}</div>
             <div className="col-span-1">{chamado.category.name}</div>
             <div className="col-span-1">
               <span

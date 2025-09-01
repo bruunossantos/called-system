@@ -29,6 +29,9 @@ export default {
         "green-color": "#35be65",
         "bg-green-color": "#d4f4d3",
 
+        "purple-color": "#cb6ce6",
+        "bg-purple-color": "#f2c4ff",
+
         "table-header-bg": "#f5f6f8",
       },
     },
