@@ -1,36 +1,90 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Sistema de Chamados
+Este é um sistema de gestão de chamados internos, desenvolvido para modernizar e otimizar o processo de acompanhamento de tarefas que antes era realizado em uma planilha do Excel. A aplicação permite o registro, categorização e acompanhamento do status de cada chamado.
 
-## Getting Started
+🚀 Tecnologias Utilizadas
+Este projeto foi construído utilizando um stack moderno e robusto, focado em performance e produtividade:
 
-First, run the development server:
+Framework: Next.js (com App Router)
 
-```bash
+Linguagem: TypeScript
+
+Interface: React
+
+Estilização: Tailwind CSS
+
+Banco de Dados: PostgreSQL
+
+ORM: Prisma
+
+Ícones: React Icons (Bootstrap Icons)
+
+✨ Funcionalidades
+[x] Listagem de chamados a partir do banco de dados.
+
+[x] Visualização de status, categoria e solicitante de cada chamado.
+
+[x] Interface responsiva com barra lateral de navegação.
+
+[ ] Criação de novos chamados através de um formulário.
+
+[ ] Edição de status e detalhes de um chamado existente.
+
+[ ] Adição de comentários e histórico para cada chamado.
+
+[ ] Dashboard com resumo de status (Atrasados, Na Fila, Concluídos).
+
+⚙️ Configuração do Ambiente de Desenvolvimento
+Siga os passos abaixo para rodar o projeto localmente.
+
+Pré-requisitos
+Node.js (versão 18.18 ou superior)
+
+PostgreSQL instalado e rodando na sua máquina.
+
+Git
+
+Passos para Instalação
+Clone o repositório:
+
+git clone [https://github.com/bruunossantos/called-system.git](https://github.com/bruunossantos/called-system.git)
+cd sistema-de-chamados
+
+Instale as dependências:
+
+npm install
+
+Configure as variáveis de ambiente:
+
+Crie um arquivo chamado .env na raiz do projeto.
+
+Adicione a sua string de conexão com o banco de dados. Crie um banco de dados chamado call_system antes.
+
+# .env
+DATABASE_URL="postgresql://SEU_USUARIO:SUA_SENHA@localhost:5432/call_system"
+
+Aplique as migrações do banco de dados:
+Este comando irá criar todas as tabelas no seu banco com base no schema do Prisma.
+
+npx prisma migrate dev
+
+Popule o banco com dados iniciais:
+Este comando irá popular as tabelas Category e Situation com os valores padrão.
+
+npx prisma db seed
+
+Rode o servidor de desenvolvimento:
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra http://localhost:3000 no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📜 Scripts Disponíveis
+No diretório do projeto, você pode rodar:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm run dev: Inicia a aplicação em modo de desenvolvimento.
 
-## Learn More
+npm run build: Compila a aplicação para produção.
 
-To learn more about Next.js, take a look at the following resources:
+npm run start: Inicia um servidor de produção.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+npm run lint: Executa o linter para verificar erros de código.
