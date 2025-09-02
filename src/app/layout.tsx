@@ -46,7 +46,7 @@ function Sidebar() {
               className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
               <BsJournalText size={20} />
-              <span>Chamados</span>
+              <span>Tarefas</span>
             </Link>
           </li>
           <li className="mb-2">

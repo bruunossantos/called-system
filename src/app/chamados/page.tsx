@@ -43,7 +43,7 @@ export default function ChamadosPage() {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-font-color mb-6">Chamados</h1>
+      <h1 className="text-3xl font-bold text-font-color mb-6">Tarefas</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 my-6">
         <Card title="PENDENTE" value={pendenteCount} color="red" />

@@ -63,7 +63,7 @@ export default function CalledTable({ chamados, onAddCalled }: CalledTableProps)
         {visibleCalled.map((chamado) => (
           <div
             key={chamado.id}
-            className="grid grid-cols-7 gap-4 items-center bg-white py-4 px-3 rounded-lg text-font-color text-[18px] shadow-sm"
+            className="grid grid-cols-7 gap-4 items-center bg-white hover:bg-table-header-bg py-4 px-3 rounded-lg text-font-color text-[18px] shadow-sm"
           >
             {/* Colunas de dados */}
             <div className="col-span-1">{chamado.userRequest.name}</div>
