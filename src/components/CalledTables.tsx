@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 type Called = {
@@ -96,9 +97,12 @@ export default function CalledTable({
               {new Date(chamado.openDate).toLocaleDateString("pt-BR")}
             </div>
             <div className="col-span-1 flex justify-end">
-              <button className="text-gray-500 hover:text-gray-800">
+              <Link
+                href={`/chamados/${chamado.id}`}
+                className="text-gray-500 hover:text-gray-800"
+              >
                 <BsThreeDotsVertical size={20} />
-              </button>
+              </Link>
             </div>
           </div>
         ))}

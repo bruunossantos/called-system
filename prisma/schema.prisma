@@ -15,7 +15,7 @@ datasource db {
 
 model User {
   id           String   @id @default(uuid())
-  name         String @unique
+  name         String   @unique
   creationDate DateTime @default(now())
   called       Called[]
 }
@@ -38,6 +38,7 @@ model Called {
   description   String       @db.Text
   openDate      DateTime     @default(now())
   startDate     DateTime?
+  timeSpent     Int          @default(0)
   updateDate    DateTime     @updatedAt
   endDate       DateTime?
   userRequestId String
