@@ -99,9 +99,10 @@ export default function CalledTable({
             <div className="col-span-1 flex justify-end">
               <Link
                 href={`/chamados/${chamado.id}`}
-                className="text-gray-500 hover:text-gray-800"
+                className="flex text-[15px] text-white bg-primary-color hover:bg-primary-color-hover py-1 px-3 rounded-lg"
               >
                 <BsThreeDotsVertical size={20} />
+                Detalhes
               </Link>
             </div>
           </div>

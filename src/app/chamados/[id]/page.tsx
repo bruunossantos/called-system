@@ -23,7 +23,7 @@ type CalledDetails = CalledType & {
 // Função para formatar os segundos em HH:MM:SS (HORA:MINUTO:SEGUNDO)
 const formatTime = (totalSeconds: number) => {
   const hours = Math.floor(totalSeconds / 3600);
-  const minutes = Math.floor(totalSeconds / 3600 / 60);
+  const minutes = Math.floor(totalSeconds % 3600 / 60);
   const seconds = totalSeconds % 60;
   return [hours, minutes, seconds].map((v) => (v < 10 ? "0" + v : v)).join(":");
 };
@@ -59,7 +59,7 @@ export default function CalledDetailPage() {
       setCalled(calledData);
       setSituations(situationsData);
       setElapsedTime(calledData.timeSpent || 0);
-      setIsTimerRunning(!!calledData.timeStartedAt);
+      setIsTimerRunning(!!calledData.startDate);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Erro desconhecido");
     } finally {
@@ -73,8 +73,8 @@ export default function CalledDetailPage() {
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
-    if (isTimerRunning && called?.timeStartedAt) {
-      const startTime = new Date(called.timeStartedAt).getTime();
+    if (isTimerRunning && called?.startDate) {
+      const startTime = new Date(called.startDate).getTime();
       interval = setInterval(() => {
         const now = Date.now();
         const secondsSinceStart = Math.floor((now - startTime) / 1000);
@@ -88,19 +88,19 @@ export default function CalledDetailPage() {
     //Pausar
     if (isTimerRunning) {
       const secondsSinceStart = Math.floor(
-        (Date.now() - new Date(called!.timeStartedAt!).getTime()) / 1000
+        (Date.now() - new Date(called!.startDate!).getTime()) / 1000
       );
       const newTotalTime = called!.timeSpent + secondsSinceStart;
 
       await fetch(`/api/called/${id}`, {
         method: "PATCH",
-        body: JSON.stringify({ timeStartedAt: null, timeSpent: newTotalTime }),
+        body: JSON.stringify({ startDate: null, timeSpent: newTotalTime }),
       });
     } else {
       //Iniciar
       await fetch(`/api/called/${id}`, {
         method: "PATCH",
-        body: JSON.stringify({ timeStartedAt: new Date() }),
+        body: JSON.stringify({ startDate: new Date() }),
       });
     }
     fetchData();
@@ -189,7 +189,7 @@ export default function CalledDetailPage() {
             <p className="text-3xl font-mono">{formatTime(elapsedTime)}</p>
             <button
               onClick={handleTimerToggle}
-              className="bg-primary-color hover:to-primary-color-hover text-white px-4 py-2 rounded-lg flex items-center gap-2"
+              className="bg-primary-color hover:bg-primary-color-hover text-white px-4 py-2 rounded-lg flex items-center gap-2"
             >
               {isTimerRunning ? (
                 <>
@@ -260,7 +260,7 @@ export default function CalledDetailPage() {
           />
           <button
             onClick={() => handleAddComment(newComment)}
-            className="bg-primary-color text-white p-3 rounded-lg"
+            className="bg-primary-color hover:bg-primary-color-hover text-white p-3 rounded-lg"
           >
             <BsSendFill />
           </button>

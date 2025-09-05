@@ -4,7 +4,7 @@ export type Called = {
   description: string;
   openDate: string;
   endDate: string | null;
-  timeStartedAt: string | null;
+  startDate: string | null;
   timeSpent: number;
   situationId: number;
   userRequest: { name: string };

@@ -40,12 +40,12 @@ export async function GET(
 
 // Função para atualizar um chamado
 export async function PATCH(
-  Request: Request,
+  request: Request,
   { params }: { params: { id: string } }
 ) {
   const id = params.id;
   try {
-    const body = await Request.json();
+    const body = await request.json();
     const updatedCalled = await prisma.called.update({
       where: { id },
       data: body,
