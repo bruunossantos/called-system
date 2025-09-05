@@ -15,8 +15,6 @@ type User = {
   name: string;
 };
 
-
-
 type CalledTableProps = {
   chamados: CalledType[];
   onAddCalled: () => void;
