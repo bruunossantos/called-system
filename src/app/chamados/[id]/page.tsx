@@ -154,9 +154,9 @@ export default function CalledDetailPage() {
     return <p className="text-center p-10">Chamado não encontrado.</p>;
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full bg-white p-8 rounded-lg shadow-lg">
+    <div className="flex flex-col lg:flex-row gap-8 h-full bg-white p-8 rounded-lg shadow-lg">
       {/* COLUNA DA ESQUERDA */}
-      <div className="flex flex-col gap-6">
+      <div className="lg:w-1/2 flex flex-col gap-6 overflow-y-auto pr-4">
         <Link
           href="/chamados"
           className="flex items-center gap-2 text-primary-color font-semibold hover:underline"
@@ -184,47 +184,86 @@ export default function CalledDetailPage() {
         </div>
 
         <div className="bg-page-bg p-4 rounded-lg">
-            <p className="font-semibold mb-2">Contagem</p>
-            <div className="flex items-center justify-between">
-                <p className="text-3xl font-mono">{formatTime(elapsedTime)}</p>
-                <button onClick={handleTimerToggle} className="bg-primary-color hover:to-primary-color-hover text-white px-4 py-2 rounded-lg flex items-center gap-2">
-                    {isTimerRunning ? <><BsPauseFill /> Pausar</> : <><BsPlayFill /> Iniciar</>}
-                </button>
-            </div>
+          <p className="font-semibold mb-2">Contagem</p>
+          <div className="flex items-center justify-between">
+            <p className="text-3xl font-mono">{formatTime(elapsedTime)}</p>
+            <button
+              onClick={handleTimerToggle}
+              className="bg-primary-color hover:to-primary-color-hover text-white px-4 py-2 rounded-lg flex items-center gap-2"
+            >
+              {isTimerRunning ? (
+                <>
+                  <BsPauseFill /> Pausar
+                </>
+              ) : (
+                <>
+                  <BsPlayFill /> Iniciar
+                </>
+              )}
+            </button>
+          </div>
         </div>
 
         <div className="bg-page-bg p-4 rounded-lg text-sm space-y-2">
-            <p><strong>Data de início:</strong> {new Date(called.openDate).toLocaleString('pt-BR')}</p>
-            <p><strong>Encerrada em:</strong> {called.endDate ? new Date(called.endDate).toLocaleString('pt-BR') : '---'}</p>
-            <p><strong>Tempo de duração:</strong> {formatTime(elapsedTime)}</p>
-            <p><strong>Aberta por:</strong> {called.userRequest.name}</p>
+          <p>
+            <strong>Data de início:</strong>{" "}
+            {new Date(called.openDate).toLocaleString("pt-BR")}
+          </p>
+          <p>
+            <strong>Encerrada em:</strong>{" "}
+            {called.endDate
+              ? new Date(called.endDate).toLocaleString("pt-BR")
+              : "---"}
+          </p>
+          <p>
+            <strong>Tempo de duração:</strong> {formatTime(elapsedTime)}
+          </p>
+          <p>
+            <strong>Aberta por:</strong> {called.userRequest.name}
+          </p>
         </div>
 
-        <button onClick={handleFinishCalled} className="w-full bg-primary-color hover:bg-primary-color-hover text-white py-3 rounded-lg font-bold">
-            ENCERRAR CHAMADO
+        <button
+          onClick={handleFinishCalled}
+          className="w-full bg-primary-color hover:bg-primary-color-hover text-white py-3 rounded-lg font-bold"
+        >
+          ENCERRAR CHAMADO
         </button>
       </div>
 
-      <div className="bg-page-bg rounded-lg p-6 flex flex-col h-full">
-        <div className="flex-1 overflow-y-auto space-y-4">
-          {called.commentary.map(comment => (
-            <div key={comment.id} className={`p-4 rounded-lg ${comment.description.startsWith('SITUAÇÃO ALTERADA') ? 'bg-orange-100' : 'bg-green-100'}`}>
-                <p className="text-sm">{comment.description}</p>
-                <p className="text-xs text-right text-gray-500 mt-2">{new Date(comment.creationDate).toLocaleString('pt-BR')}</p>
+      {/* COLUNA DA DIREITA */}
+      <div className="lg:w-1/2 bg-page-bg rounded-lg p-6 flex flex-col h-full flex-shrink-0 group">
+        <div className="flex-1 overflow-y-hidden group-hover:overflow-y-auto space-y-4 pr-2 transition-all">
+          {called.commentary.map((comment) => (
+            <div
+              key={comment.id}
+              className={`p-4 rounded-lg ${
+                comment.description.startsWith("SITUAÇÃO ALTERADA")
+                  ? "bg-orange-100"
+                  : "bg-green-100"
+              }`}
+            >
+              <p className="text-sm">{comment.description}</p>
+              <p className="text-xs text-right text-gray-500 mt-2">
+                {new Date(comment.creationDate).toLocaleString("pt-BR")}
+              </p>
             </div>
           ))}
         </div>
         <div className="mt-4 flex gap-2">
-            <input 
-                type="text" 
-                value={newComment}
-                onChange={(e) => setNewComment(e.target.value)}
-                placeholder="Digite aqui a nova atualização..."
-                className="flex-1 border p-2 rounded-lg"
-            />
-            <button onClick={() => handleAddComment(newComment)} className="bg-primary-color text-white p-3 rounded-lg">
-                <BsSendFill />
-            </button>
+          <input
+            type="text"
+            value={newComment}
+            onChange={(e) => setNewComment(e.target.value)}
+            placeholder="Digite aqui a nova atualização..."
+            className="flex-1 border p-2 rounded-lg"
+          />
+          <button
+            onClick={() => handleAddComment(newComment)}
+            className="bg-primary-color text-white p-3 rounded-lg"
+          >
+            <BsSendFill />
+          </button>
         </div>
       </div>
     </div>
