@@ -9,7 +9,7 @@ const colorClasses = {
   red: "bg-red-color",
   orange: "bg-orange-color",
   green: "bg-green-color",
-  purple: "bg-purple-color"
+  purple: "bg-purple-color",
 };
 
 export default function Card({ title, value, color }: CardProps) {

@@ -4,19 +4,10 @@ import { useState, useEffect } from "react";
 import Card from "@/components/Card";
 import CalledTable from "@/components/CalledTables";
 import AddCalledModal from "@/components/AddCalledModal";
-
-type Called = {
-  id: string;
-  title: string;
-  description: string;
-  openDate: string;
-  userRequest: { name: string };
-  category: { name: string };
-  situation: { name: string };
-};
+import { Called as CalledType } from "@/types";
 
 export default function ChamadosPage() {
-  const [calledData, setCalledData] = useState<Called[]>([]);
+  const [calledData, setCalledData] = useState<CalledType[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
