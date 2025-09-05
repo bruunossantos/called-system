@@ -22,3 +22,4 @@ export type Situation = {
   id: number;
   name: string;
 };
+
