@@ -189,7 +189,7 @@ export default function CalledDetailPage() {
             <p className="text-3xl font-mono">{formatTime(elapsedTime)}</p>
             <button
               onClick={handleTimerToggle}
-              className="bg-primary-color hover:bg-primary-color-hover text-white px-4 py-2 rounded-lg flex items-center gap-2"
+              className="bg-primary-color hover:bg-primary-color-hover text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors duration-300 ease-in-out"
             >
               {isTimerRunning ? (
                 <>
@@ -225,7 +225,7 @@ export default function CalledDetailPage() {
 
         <button
           onClick={handleFinishCalled}
-          className="w-full bg-primary-color hover:bg-primary-color-hover text-white py-3 rounded-lg font-bold"
+          className="w-full bg-primary-color hover:bg-primary-color-hover text-white py-3 rounded-lg font-bold transition-colors duration-300 ease-in-out"
         >
           ENCERRAR CHAMADO
         </button>
@@ -260,7 +260,7 @@ export default function CalledDetailPage() {
           />
           <button
             onClick={() => handleAddComment(newComment)}
-            className="bg-primary-color hover:bg-primary-color-hover text-white p-3 rounded-lg"
+            className="bg-primary-color hover:bg-primary-color-hover text-white p-3 rounded-lg transition-colors duration-300 ease-in-out"
           >
             <BsSendFill />
           </button>

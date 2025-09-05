@@ -54,7 +54,7 @@ export default function CalledTable({
 
           <button
             onClick={onAddCalled}
-            className="bg-primary-color text-white px-4 py-2 rounded-lg hover:bg-primary-color-hover font-semibold text-sm transition-colors"
+            className="bg-primary-color text-white px-4 py-2 rounded-lg hover:bg-primary-color-hover font-semibold text-sm transition-colors duration-300 ease-in-out"
           >
             ADICIONAR NOVO +
           </button>
@@ -99,7 +99,7 @@ export default function CalledTable({
             <div className="col-span-1 flex justify-end">
               <Link
                 href={`/chamados/${chamado.id}`}
-                className="flex text-[15px] text-white bg-primary-color hover:bg-primary-color-hover py-1 px-3 rounded-lg"
+                className="flex text-[15px] text-white bg-primary-color hover:bg-primary-color-hover py-1 px-3 rounded-lg transition-colors duration-200 ease-in-out"
               >
                 <BsThreeDotsVertical size={20} />
                 Detalhes
