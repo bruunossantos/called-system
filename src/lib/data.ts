@@ -19,3 +19,18 @@ export async function getAllCalled() {
     return [];
   }
 }
+
+// BUSCANDO TODOS OS USUÁRIOS
+export async function getAllUsers() {
+  try {
+    const users = await prisma.user.findMany({
+      orderBy: {
+        name: 'asc',
+      },
+    });
+    return users;
+  } catch (error) {
+    console.error("Erro na Base de Dados: Falha ao buscar utilizadores.", error);
+    return [];
+  }
+}
