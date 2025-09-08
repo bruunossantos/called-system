@@ -1,19 +1,27 @@
-import prisma from '@/lib/prisma';
+import prisma from "@/lib/prisma";
+import { Called, User } from "@/types";
 
 // BUSCANDO TODOS OS CHAMADOS
-export async function getAllCalled() {
+export async function getAllCalled(): Promise<Called[]> {
   try {
-    const allCalled = await prisma.called.findMany({
+    const allCalledFromDb = await prisma.called.findMany({
       include: {
         category: true,
         situation: true,
         userRequest: true,
       },
       orderBy: {
-        updateDate: 'desc',
+        updateDate: "desc",
       },
     });
-    return allCalled;
+    const formattedCalled = allCalledFromDb.map((c) => ({
+      ...c,
+      openDate: c.openDate.toISOString(),
+      endDate: c.endDate ? c.endDate.toISOString() : null,
+      startDate: c.startDate ? c.startDate.toISOString() : null,
+    }));
+
+    return formattedCalled;
   } catch (error) {
     console.error("Erro na Base de Dados: Falha ao buscar chamados.", error);
     return [];
@@ -21,16 +29,24 @@ export async function getAllCalled() {
 }
 
 // BUSCANDO TODOS OS USUÁRIOS
-export async function getAllUsers() {
+export async function getAllUsers(): Promise<User[]> {
   try {
-    const users = await prisma.user.findMany({
+    const usersFromDb = await prisma.user.findMany({
       orderBy: {
-        name: 'asc',
+        name: "asc",
       },
     });
-    return users;
+
+    const formattedUsers = usersFromDb.map((u) => ({
+      ...u,
+      creationDate: u.creationDate.toISOString(), // Converte Date para string
+    }));
+    return formattedUsers;
   } catch (error) {
-    console.error("Erro na Base de Dados: Falha ao buscar utilizadores.", error);
+    console.error(
+      "Erro na Base de Dados: Falha ao buscar utilizadores.",
+      error
+    );
     return [];
   }
 }

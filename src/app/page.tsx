@@ -1,21 +1,24 @@
 import Link from "next/link";
 import { getAllCalled, getAllUsers } from "@/lib/data";
 import { Called, User } from "@/types";
-import { BsTrashFill } from 'react-icons/bs';
-
+import { BsTrashFill } from "react-icons/bs";
 
 const getSituationBadgeStyle = (situationName: string) => {
   switch (situationName) {
-    case 'PENDENTE': return 'text-red-color bg-bg-red-color';
-    case 'EM PRODUÇÃO': return 'text-orange-color bg-bg-orange-color';
-    case 'AGUARDANDO RETORNO': return 'text-purple-color bg-bg-purple-color';
-    case 'CONCLUÍDO': return 'text-green-color bg-bg-green-color';
-    default: return 'text-gray-800 bg-gray-200';
+    case "PENDENTE":
+      return "text-red-color bg-bg-red-color";
+    case "EM PRODUÇÃO":
+      return "text-orange-color bg-bg-orange-color";
+    case "AGUARDANDO RETORNO":
+      return "text-purple-color bg-bg-purple-color";
+    case "CONCLUÍDO":
+      return "text-green-color bg-bg-green-color";
+    default:
+      return "text-gray-800 bg-gray-200";
   }
 };
 
 export default async function Home() {
-  
   const [allCalled, allUsers]: [Called[], User[]] = await Promise.all([
     getAllCalled(),
     getAllUsers(),
@@ -54,7 +57,9 @@ export default async function Home() {
         <p>Hoje é {dateString}</p>
       </div>
 
-      <div className="flex gap-8"> {/* SEÇÃO GERAL FLEX */}
+      <div className="flex gap-8">
+        {" "}
+        {/* SEÇÃO GERAL FLEX */}
         <div className="flex flex-col w-full lg:w-3/4 gap-8">
           {/* COLUNA ESQUERDA 3/4*/}
           <div className="flex items-center gap-6 flex-wrap bg-white rounded-lg p-5 shadow-md">
@@ -103,8 +108,12 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="flex flex-col flex-1 min-h-0 bg-white p-6 rounded-lg"> {/* TABELA */}
-            <h2 className="font-bold text-xl mb-4 text-font-color flex-shrink-0">Últimos Chamados Atualizados</h2>
+          <div className="flex flex-col flex-1 min-h-0 bg-white p-6 rounded-lg">
+            {" "}
+            {/* TABELA */}
+            <h2 className="font-bold text-xl mb-4 text-font-color flex-shrink-0">
+              Últimos Chamados Atualizados
+            </h2>
             <div className="flex-shrink-0 grid grid-cols-7 gap-4 px-3 py-2 text-[15px] text-font-color font-semibold bg-table-header-bg rounded-lg">
               <div className="col-span-1">Colaborador</div>
               <div className="col-span-2">Descrição</div>
@@ -114,30 +123,53 @@ export default async function Home() {
             </div>
             <div className="flex-1 overflow-y-auto mt-3 space-y-3 pr-2">
               {recentTickets.map((ticket) => (
-                <Link key={ticket.id} href={`/chamados/${ticket.id}`} className="grid grid-cols-7 gap-4 items-center border-b p-3 rounded-lg text-font-color text-sm hover:bg-table-header-bg transition-shadow">
-                  <div className="col-span-1 font-semibold">{ticket.userRequest.name}</div>
-                  <div className="col-span-2 truncate">{ticket.description}</div>
+                <Link
+                  key={ticket.id}
+                  href={`/chamados/${ticket.id}`}
+                  className="grid grid-cols-7 gap-4 items-center border-b p-3 rounded-lg text-font-color text-sm hover:bg-table-header-bg transition-shadow"
+                >
+                  <div className="col-span-1 font-semibold">
+                    {ticket.userRequest.name}
+                  </div>
+                  <div className="col-span-2 truncate">
+                    {ticket.description}
+                  </div>
                   <div className="col-span-1">{ticket.category.name}</div>
                   <div className="col-span-2">
-                    <span className={`px-2 py-1 text-xs font-semibold rounded-full ${getSituationBadgeStyle(ticket.situation.name)}`}>
+                    <span
+                      className={`px-2 py-1 text-xs font-semibold rounded-full ${getSituationBadgeStyle(
+                        ticket.situation.name
+                      )}`}
+                    >
                       {ticket.situation.name}
                     </span>
                   </div>
-                  <div className="col-span-1">{new Date(ticket.openDate).toLocaleDateString("pt-BR")}</div>
+                  <div className="col-span-1">
+                    {new Date(ticket.openDate).toLocaleDateString("pt-BR")}
+                  </div>
                 </Link>
               ))}
             </div>
           </div>
-
         </div>
         {/* COLUNA DIREITA 1/4 */}
         <div className="flex flex-col w-full lg:w-1/4 gap-8">
-          <div className="flex flex-col gap-5 p-5 bg-white rounded-lg shadow-md h-full"> {/* COLABORADORES */}
-              <h2 className="text-lg font-semibold text-gray-800 border-b pb-3">Colaboradores</h2>
-              {allUsers.map((user: User) => (
-              <div key={user.id} className="flex items-center justify-between bg-table-header-bg p-3 rounded-lg ">
+          <div className="flex flex-col gap-5 p-5 bg-white rounded-lg shadow-md h-full">
+            {" "}
+            {/* COLABORADORES */}
+            <h2 className="text-lg font-semibold text-gray-800 border-b pb-3">
+              Colaboradores
+            </h2>
+            {allUsers.map((user: User) => (
+              <div
+                key={user.id}
+                className="flex items-center justify-between bg-table-header-bg p-3 rounded-lg "
+              >
                 <span className="text-gray-700">{user.name}</span>
-                <button className="text-red-500 hover:text-red-700" aria-label={`Remover ${user.name}`}>
+                <button
+                  className="text-red-500 hover:text-red-700"
+                  aria-label={`Remover ${user.name}`}
+                >
                   <BsTrashFill size={18} />
                 </button>
               </div>
