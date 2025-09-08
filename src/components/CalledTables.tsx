@@ -2,7 +2,13 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import { BsThreeDotsVertical, BsArrowUp, BsArrowDown } from "react-icons/bs";
+import {
+  BsThreeDotsVertical,
+  BsArrowUp,
+  BsArrowDown,
+  BsChevronLeft,
+  BsChevronRight,
+} from "react-icons/bs";
 import { Called as CalledType } from "@/types";
 
 export type Situation = {
@@ -33,6 +39,7 @@ export default function CalledTable({
 }: CalledTableProps) {
   // --- ESTADOS ---
   const [itemsPerPage, setItemsPerPage] = useState(6);
+  const [currentPage, setCurrentPage] = useState(1);
 
   // --- ESTADOS PARA OS FILTROS---
   const [filterSituation, setFilterSituation] = useState("TODOS");
@@ -109,7 +116,10 @@ export default function CalledTable({
   }, [chamados, filterSituation, filterUser, sortConfig]);
 
   // APLICANDO PAGINAÇÃO NO FINAL
-  const visibleCalled = processedCalled.slice(0, itemsPerPage);
+  const totalPages = Math.ceil(processedCalled.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const visibleCalled = processedCalled.slice(startIndex, endIndex);
 
   // --- FUNÇÕES DE MANIPULAÇÃO ---
   const handleSort = (key: SortKey) => {
@@ -255,6 +265,34 @@ export default function CalledTable({
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="flex-shrink-0 flex items-center justify-between pt-4">
+        <span className="text-sm text-gray-600">
+          Mostrando {visibleCalled.length} de {processedCalled.length}{" "}
+          resultados
+        </span>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className="p-2 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <BsChevronLeft />
+          </button>
+          <span className="text-sm font-semibold">
+            Página {currentPage} de {totalPages}
+          </span>
+          <button
+            onClick={() =>
+              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+            }
+            disabled={currentPage === totalPages}
+            className="p-2 border rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            <BsChevronRight />
+          </button>
+        </div>
       </div>
     </div>
   );
