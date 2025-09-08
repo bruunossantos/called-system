@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 // FUNÇÃO PARA EXCLUIR COLABORADOR
 export async function DELETE(
   _request: Request,
-  context: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   const { id } = await context.params;
   try {

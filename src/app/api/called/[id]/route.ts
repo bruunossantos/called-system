@@ -4,8 +4,9 @@ import prisma from "@/lib/prisma";
 // Função para buscar um chamado
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  props: { params: Promise<{ id: string }> }
 ) {
+  const params = await props.params;
   const id = params.id;
   try {
     const called = await prisma.called.findUnique({
@@ -41,8 +42,9 @@ export async function GET(
 // Função para atualizar um chamado
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  props: { params: Promise<{ id: string }> }
 ) {
+  const params = await props.params;
   const id = params.id;
   try {
     const body = await request.json();
