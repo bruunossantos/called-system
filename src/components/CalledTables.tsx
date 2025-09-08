@@ -268,7 +268,7 @@ export default function CalledTable({
       </div>
 
       <div className="flex-shrink-0 flex items-center justify-between pt-4">
-        <span className="text-sm text-gray-600">
+        <span className="text-sm text-font-color">
           Mostrando {visibleCalled.length} de {processedCalled.length}{" "}
           resultados
         </span>
@@ -280,7 +280,7 @@ export default function CalledTable({
           >
             <BsChevronLeft />
           </button>
-          <span className="text-sm font-semibold">
+          <span className="text-sm font-semibold text-font-color">
             Página {currentPage} de {totalPages}
           </span>
           <button

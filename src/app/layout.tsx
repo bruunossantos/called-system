@@ -51,7 +51,7 @@ function Sidebar() {
           </li>
           <li className="mb-2">
             <Link
-              href="#"
+              href="/colaboradores"
               className="flex items-center gap-3 p-2 rounded hover:bg-primary-color-hover transition-colors"
             >
               <BsPeopleFill size={20} />
