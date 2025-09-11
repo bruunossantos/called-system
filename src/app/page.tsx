@@ -57,8 +57,7 @@ export default async function Home() {
         <p>Hoje é {dateString}</p>
       </div>
 
-      <div className="flex gap-8">
-        {" "}
+      <div className="flex flex-col lg:flex-row gap-8 flex-1 min-h-0">
         {/* SEÇÃO GERAL FLEX */}
         <div className="flex flex-col w-full lg:w-3/4 gap-8">
           {/* COLUNA ESQUERDA 3/4*/}
@@ -109,7 +108,6 @@ export default async function Home() {
           </div>
 
           <div className="flex flex-col flex-1 min-h-0 bg-white p-6 rounded-lg">
-            {" "}
             {/* TABELA */}
             <h2 className="font-bold text-xl mb-4 text-font-color flex-shrink-0">
               Últimos Chamados Atualizados
@@ -155,25 +153,26 @@ export default async function Home() {
         {/* COLUNA DIREITA 1/4 */}
         <div className="flex flex-col w-full lg:w-1/4 gap-8">
           <div className="flex flex-col gap-5 p-5 bg-white rounded-lg shadow-md h-full">
-            {" "}
             {/* COLABORADORES */}
             <h2 className="text-lg font-semibold text-gray-800 border-b pb-3">
               Colaboradores
             </h2>
-            {allUsers.map((user: User) => (
-              <div
-                key={user.id}
-                className="flex items-center justify-between bg-table-header-bg p-3 rounded-lg "
-              >
-                <span className="text-gray-700">{user.name}</span>
-                <button
-                  className="text-red-500 hover:text-red-700"
-                  aria-label={`Remover ${user.name}`}
+            <div className="flex-1 overflow-y-auto space-y-3 pr-2">
+              {allUsers.map((user: User) => (
+                <div
+                  key={user.id}
+                  className="flex items-center justify-between bg-table-header-bg p-3 rounded-lg "
                 >
-                  <BsTrashFill size={18} />
-                </button>
-              </div>
-            ))}
+                  <span className="text-gray-700">{user.name}</span>
+                  <button
+                    className="text-red-500 hover:text-red-700"
+                    aria-label={`Remover ${user.name}`}
+                  >
+                    <BsTrashFill size={18} />
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
