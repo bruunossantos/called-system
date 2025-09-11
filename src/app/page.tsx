@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import Link from "next/link";
 import { getAllCalled, getAllUsers } from "@/lib/data";
 import { Called, User } from "@/types";
