@@ -26,6 +26,7 @@ async function main() {
       { name: 'SERVIDOR' },
       { name: 'COTAÇÃO' },
       { name: 'PROGRAMAS' },
+      { name: 'OUTROS' },
     ],
     skipDuplicates: true, // skipDuplicates ainda é útil aqui
   });
